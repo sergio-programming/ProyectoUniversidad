@@ -51,10 +51,12 @@ def registrarProfesor():
     print("#"*30)
     nombre = input("\nIngrese el nombre del profesor: ")
     apellido = input("Ingrese el apellido del profesor: ")
+    fecha_nacimiento = input("Ingrese la feha de nacimiento del profesor (AAAA/MM/DD): ")
+    genero = input("Ingrese el genero del profesor: ")
     email = input("Ingrese el email del profesor: ")
-    telefono = input("Ingrese el número telefonico del profesor: ")
-    facultad_id = input("Ingrese la dirección del profesor: ")
-    ProfesorController.registerProfesor(nombre, apellido, email, telefono, facultad_id)
+    telefono = input("Ingrese el número telefónico del profesor: ")
+    facultad_id = input("Ingrese el id de la facultad a la que pertenece el profesor: ")
+    ProfesorController.registerProfesor(nombre, apellido, fecha_nacimiento, genero, email, telefono, facultad_id)
     
     
 def visualizarProfesores():
@@ -62,13 +64,15 @@ def visualizarProfesores():
     profesores = ProfesorController.getAllProfesores()
     print()
     print("#"*30)
-    print("\nMODULO DE VISUALIZACIÓN DE ESTUDIANTES")
+    print("\nMODULO DE VISUALIZACIÓN DE PROFESORES")
     print("#"*30)
     for i, profesor in enumerate(profesores, start=1):
         print(f"""\nESTUDIANTE #{i}
               Id: {profesor.id}
               Nombre: {profesor.nombre}
               Apellido: {profesor.apellido}
+              Fecha de Nacimiento: {profesor.fecha_nacimiento}
+              Genero: {profesor.genero}
               Email: {profesor.email}
               Telefono: {profesor.telefono}
               Id Facultad: {profesor.facultad_id}""")
@@ -76,7 +80,7 @@ def visualizarProfesores():
 def consultarProfesor():
     print()
     print("#"*30)
-    print("\nMODULO DE CONSULTA DE ESTUDIANTE")
+    print("\nMODULO DE CONSULTA DE PROFESOR")
     print("#"*30)
     try:
         id = int(input("\nIngrese el id del estudiante a consultar: "))
@@ -94,11 +98,73 @@ def consultarProfesor():
                   Id: {profesor.id}
                   Nombre: {profesor.nombre}
                   Apellido: {profesor.apellido}
+                  Fecha de Nacimiento: {profesor.fecha_nacimiento}
+                  Genero: {profesor.genero} 
                   Email: {profesor.email}
                   Telefono: {profesor.telefono}
                   Id Facultad: {profesor.facultad_id}""")
             
-             
+def actualizarProfesor():
+    print()
+    print("#"*30)
+    print("\nMODULO DE ACTUALIZACIÓN DE DATOS DE PROFESOR")
+    print("#"*30)
+    while True:
+        try:
+            id = int(input("\nIngrese el id del profesor a actualizar: "))
+        except ValueError:
+            print("\nEl tipo de dato ingresado no es valido. Por favor ingrese un número.")
+            input("Presione <Enter> para continuar")    
+        else:
+            break
+        
+    profesor = ProfesorController.getProfesorById(id)
+    
+    if profesor == None:
+        print("\nNo existe un estudiante con el numero de ID ingresado")
+        input("Presione <Enter> para continuar")
+        return
+    else:
+        nombre = input("Ingrese el nombre del profesor: ")
+        if nombre == "":
+            nombre = profesor.nombre
+
+        apellido = input("Ingrese el apellido del profersor: ")
+        if apellido == "":
+            apellido = profesor.apellido
+            
+        fecha_nacimiento = input("Ingrese la fecha de nacimiento del profesor: ")
+        if fecha_nacimiento == "":
+            fecha_nacimiento = profesor.fecha_nacimiento
+            
+        genero = input("Ingrese el genero del profesor: ")
+        if genero == "":
+            genero = profesor.genero
+            
+        email = input("Ingrese el email del profesor: ")
+        if email == "":
+            email = profesor.email
+            
+        telefono = input("Ingrese el número telefónico del profesor: ")
+        if telefono == "":
+            telefono = profesor.telefono
+        
+        while True:
+            try:
+                facultad_id = int(input("Ingrese el id de la facultad a la que pertenece el profesor: "))
+                if facultad_id <= 0:
+                    pass
+            except ValueError:
+                print("\nEl tipo de dato ingresado no es valido. Por favor ingrese un número.")
+                input("Presione <Enter> para continuar")
+            except IndexError:
+                print("\nNo existe una facultad con el numero de ID ingresado")
+                input("Presione <Enter> para continuar")
+            else:
+                break
+        
+        ProfesorController.updateProfesor(id, nombre, apellido, fecha_nacimiento, genero, email, telefono, facultad_id)
+        
 
 def eliminarProfesor():
     print()
