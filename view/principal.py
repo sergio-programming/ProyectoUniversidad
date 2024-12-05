@@ -1,4 +1,5 @@
-
+from view.estudiante import menuEstudiantes
+from view.profesor import menuProfesores
 
 def menu():
     while True:
@@ -17,10 +18,10 @@ def menu():
             return
         else:
             if opcion == 1:
-                pass
+                menuEstudiantes()
             
             elif opcion == 2:
-                pass
+                menuProfesores()
             
             else:
                 print("La opción ingresada no es valida. Por favor intente de nuevo.")

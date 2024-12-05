@@ -50,7 +50,7 @@ def registrarEstudiante():
     print("#"*30)
     nombre = input("\nIngrese el nombre del estudiante: ")
     apellido = input("Ingrese el apellido del estudiante: ")
-    fecha_nacimiento = input("Ingrese la fecha de nacimiento del estudiante (DD/MM/AAAA): ")
+    fecha_nacimiento = input("Ingrese la fecha de nacimiento del estudiante (AAAA/MM/DD): ")
     genero = input("Ingrese el genero del estudiante: ")
     email = input("Ingrese el email del estudiante: ")
     telefono = input("Ingrese el número telefonico del estudiante: ")
@@ -109,7 +109,7 @@ def actualizarEstudiante():
     print("\nMODULO DE ACTUALIZACIÓN DE DATOS DE ESTUDIANTE")
     print("#"*30)
     try:
-        id = int(input("\nIngrese el id del estudiante a consultar: "))
+        id = int(input("\nIngrese el id del estudiante a actualizar: "))
     except ValueError:
         print("\nEl tipo de dato ingresado no es valido. Por favor ingrese un número.")
         input("Presione <Enter> para continuar")

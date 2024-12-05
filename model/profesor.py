@@ -1,10 +1,12 @@
 from database import getDatabaseConnection
 
 class Profesor:
-    def __init__(self, id: int, nombre: str, apellido: str, email: str, telefono: str, facultad_id: int):
+    def __init__(self, id: int, nombre: str, apellido: str, fecha_nacimiento: str, genero: str, email: str, telefono: str, facultad_id: int):
         self.id = id
         self.nombre = nombre
         self.apellido = apellido
+        self.fecha_nacimiento = fecha_nacimiento
+        self.genero = genero
         self.email = email
         self.telefono = telefono
         self.facultad_id = facultad_id
@@ -15,7 +17,7 @@ class ProfesorDao:
     def create(profesor: Profesor):
         conexion = getDatabaseConnection()
         cursor = conexion.cursor()
-        cursor.execute(f"INSERT INTO profesores (nombre, apellido, email, telefono, departamento_id) VALUES ('{profesor.nombre}', '{profesor.apellido}', '{profesor.email}', '{profesor.telefono}', {profesor.departamento_id})")
+        cursor.execute(f"INSERT INTO profesores (nombre, apellido, fecha_nacimiento, genero, email, telefono, departamento_id) VALUES ('{profesor.nombre}', '{profesor.apellido}', '{profesor.fecha_nacimiento}', '{profesor.genero}' '{profesor.email}', '{profesor.telefono}', {profesor.facultad_id})")
         conexion.commit()
         cursor.close()
         conexion.close()
@@ -31,7 +33,7 @@ class ProfesorDao:
         if result == None:
             return None
         else:
-            return Profesor(result[0], result[1], result[2], result[3], result[4], result[5])
+            return Profesor(result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7])
     
     def readAll():
         conexion = getDatabaseConnection()
@@ -42,7 +44,7 @@ class ProfesorDao:
         conexion.close()
         profesores = []
         for result in results:
-            profesor = Profesor(result[0], result[1], result[2], result[3], result[4], result[5])
+            profesor = Profesor(result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7])
             profesores.append(profesor)
         return profesores
     
@@ -53,9 +55,11 @@ class ProfesorDao:
                        UPDATE profesores
                         SET nombre = '{profesor.nombre}',
                             apellido = '{profesor.apellido}',
+                            fecha_nacimiento = '{profesor.fecha_nacimiento}',
+                            genero = '{profesor.genero}',
                             email = '{profesor.email}',
                             telefono = '{profesor.telefono}',
-                            departamento_id = {profesor.departamento_id}
+                            departamento_id = {profesor.facultad_id}
                         WHERE id = {profesor.id}
                        """)
         conexion.commit()

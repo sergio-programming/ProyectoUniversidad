@@ -9,11 +9,11 @@ class EstudianteController:
     
     def getAllEstudiantes():
         estudiantes = []
-        estudiantes = EstudianteDao.getAll()
+        estudiantes = EstudianteDao.readAll()
         return estudiantes
     
     def getEstudianteById(id):
-        estudiante = EstudianteDao.get(id)
+        estudiante = EstudianteDao.read(id)
         return estudiante
     
     def updateEstudiante(id, nombre, apellido, fecha_nacimiento, genero, email, telefono, direccion):
