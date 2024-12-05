@@ -35,6 +35,7 @@ class ProfesorDao:
         else:
             return Profesor(result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7])
     
+    @staticmethod
     def readAll():
         conexion = getDatabaseConnection()
         cursor = conexion.cursor()
@@ -48,6 +49,7 @@ class ProfesorDao:
             profesores.append(profesor)
         return profesores
     
+    @staticmethod
     def update(profesor: Profesor):
         conexion = getDatabaseConnection()
         cursor = conexion.cursor()
@@ -66,6 +68,7 @@ class ProfesorDao:
         cursor.close()
         conexion.close()
     
+    @staticmethod
     def delete(id: int):
         conexion = getDatabaseConnection()
         cursor = conexion.cursor()
@@ -73,3 +76,4 @@ class ProfesorDao:
         conexion.commit()
         cursor.close()
         conexion.close()
+        
