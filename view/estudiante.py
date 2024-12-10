@@ -169,3 +169,5 @@ def eliminarEstudiante():
             return
         else:
             EstudianteController.deleteEstudiante(id)
+            print("!Registro de estudiante eliminado exitosamente!")
+            input("Presione <Enter> para continuar")

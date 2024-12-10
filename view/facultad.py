@@ -4,7 +4,7 @@ def menuFacultades():
     while True:
         print()
         print("#"*30)
-        print("MENÚ GESTION FACULTADES")
+        print("MENÚ GESTION DE FACULTADES")
         print("#"*30)
         print("""1. Registro de facultades.
 2. Consultar datos de una facultad.
@@ -22,19 +22,19 @@ def menuFacultades():
             return
         else:
             if opcion == 1:
-                pass
+                registrarFacultad()
         
             elif opcion == 2:
-                pass
+                consultarFacultad()
         
             elif opcion == 3:
-                pass
+                visualizarFacultades()
         
             elif opcion == 4:
-                pass
+                actualizarFacultad()
         
             elif opcion == 5:
-                pass
+                eliminarFacultad()
         
             elif opcion == 6:
                 break
@@ -106,7 +106,7 @@ def actualizarFacultad():
         input("Presione <Enter> para continuar")
         return
     else:
-        nombre = input("Ingrese el nombre del profesor: ")
+        nombre = input("Ingrese el nombre de la facultad: ")
         if nombre == "":
             nombre = facultad.nombre        
         FacultadController.updateFacultad(id, nombre)
@@ -125,7 +125,7 @@ def eliminarFacultad():
     else:
         facultad = FacultadController.getFacultadById(id)
         if facultad == None:
-            print("\nNo existe un profesor con el numero de ID ingresado")
+            print("\nNo existe una facultad con el numero de ID ingresado")
             input("Presione <Enter> para continuar")
             return
         else:

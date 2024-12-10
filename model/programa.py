@@ -1,17 +1,18 @@
 from database import getDatabaseConnection
 
-class Facultad:
-    def __init__(self, id: int, nombre: str):
+class Programa:
+    def __init__(self, id: int, nombre: str, facultad_id: int):
         self.id = id
         self.nombre = nombre
+        self.facultad_id = facultad_id
         
-class FacultadDao:
+class ProgramaDao:
     
     @staticmethod
-    def create(facultad: Facultad):
+    def create(programa: Programa):
         conexion = getDatabaseConnection()
         cursor = conexion.cursor()
-        cursor.execute(f"INSERT INTO facultades (nombre) VALUES ('{facultad.nombre}')")
+        cursor.execute(f"INSERT INTO programas (nombre, facultad_id) VALUES ('{programa.nombre}', {programa.facultad_id})")
         conexion.commit()
         cursor.close()
         conexion.close()
@@ -20,47 +21,47 @@ class FacultadDao:
     def read(id: int):
         conexion = getDatabaseConnection()
         cursor = conexion.cursor()
-        cursor.execute(f"SELECT * FROM facultades WHERE id = {id}")
+        cursor.execute(f"SELECT * FROM programas WHERE id = {id}")
         result = cursor.fetchone()
         cursor.close()
         conexion.close()
-        if result == None:
+        if result is None:
             return None
-        else:
-            return Facultad(result[0], result[1])
-    
-    @staticmethod    
+        return Programa(result[0], result[1], result[2])
+        
+    @staticmethod
     def readAll():
         conexion = getDatabaseConnection()
         cursor = conexion.cursor()
-        cursor.execute("SELECT * FROM facultades")
+        cursor.execute("SELECT * FROM programas")
         results = cursor.fetchall()
         cursor.close()
         conexion.close()
-        facultades = []
+        programas = []
         for result in results:
-            facultad = Facultad(result[0], result[1])
-            facultades.append(facultad)
-        return facultades
+            programa = Programa(result[0], result[1], result[2])
+            programas.append(programa)
+        return programas
     
     @staticmethod
-    def update(facultad: Facultad):
+    def update(programa: Programa):
         conexion = getDatabaseConnection()
         cursor = conexion.cursor()
         cursor.execute(f"""
                        UPDATE facultades
-                        SET nombre = {facultad.nombre}
-                        WHERE id = {facultad.id}
+                        SET nombre = {programa.nombre},
+                        SET facultad_id = {programa.facultad_id}
+                        WHERE id = {programa.id}
                        """)
         conexion.commit()
         cursor.close()
         conexion.close()
         
-    @staticmethod    
+    @staticmethod
     def delete(id: int):
         conexion = getDatabaseConnection()
         cursor = conexion.cursor()
-        cursor.execute(f"DELETE FROM facultades WHERE id = {id}")
+        cursor.execute(f"DELETE FROM programas WHERE id = {id}")
         conexion.commit()
         cursor.close()
         conexion.close()

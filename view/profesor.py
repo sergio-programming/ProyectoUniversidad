@@ -1,4 +1,5 @@
 from controller.profesor import ProfesorController
+from controller.facultad import FacultadController
 
 def menuProfesores():
     while True:
@@ -30,7 +31,7 @@ def menuProfesores():
                 visualizarProfesores()
             
             elif opcion == 4:
-                pass
+                actualizarProfesor()
             
             elif opcion == 5:
                 eliminarProfesor()
@@ -55,7 +56,20 @@ def registrarProfesor():
     genero = input("Ingrese el genero del profesor: ")
     email = input("Ingrese el email del profesor: ")
     telefono = input("Ingrese el número telefónico del profesor: ")
-    facultad_id = input("Ingrese el id de la facultad a la que pertenece el profesor: ")
+    while True:
+        try:
+            facultad_id = input("Ingrese el id de la facultad a la que pertenece el profesor: ")
+            facultad = FacultadController.getFacultadById(facultad_id)
+            if facultad is None:
+                raise Exception("No existe una facultad con el numero de id ingresado. Por favor intente de nuevo.")
+            break
+        except ValueError:
+            print("\nEl tipo de dato ingresado no es valido. Por favor ingrese un número.")
+            input("Presione <Enter> para continuar")
+        except Exception as e:
+            print(f"\n{e}")
+            input("Presione <Enter> para continuar")
+            
     ProfesorController.registerProfesor(nombre, apellido, fecha_nacimiento, genero, email, telefono, facultad_id)
     
     
@@ -120,6 +134,7 @@ def actualizarProfesor():
         
     profesor = ProfesorController.getProfesorById(id)
     
+    
     if profesor == None:
         print("\nNo existe un estudiante con el numero de ID ingresado")
         input("Presione <Enter> para continuar")
@@ -152,13 +167,14 @@ def actualizarProfesor():
         while True:
             try:
                 facultad_id = int(input("Ingrese el id de la facultad a la que pertenece el profesor: "))
-                if facultad_id <= 0:
-                    pass
+                facultad = FacultadController.getFacultadById(facultad_id)
+                if facultad is None:
+                    raise Exception("\nLa facultad con el numero de id ingresado no existe. Por favor intente de nuevo.")
             except ValueError:
                 print("\nEl tipo de dato ingresado no es valido. Por favor ingrese un número.")
                 input("Presione <Enter> para continuar")
-            except IndexError:
-                print("\nNo existe una facultad con el numero de ID ingresado")
+            except Exception as e:
+                print(f"\n{e}")
                 input("Presione <Enter> para continuar")
             else:
                 break
@@ -177,10 +193,12 @@ def eliminarProfesor():
         print("\nEl tipo de dato ingresado no es valido. Por favor ingrese un número.")
         input("Presione <Enter> para continuar")
     else:
-        estudiante = ProfesorController.getProfesorById(id)
-        if estudiante == None:
+        profesor = ProfesorController.getProfesorById(id)
+        if profesor == None:
             print("\nNo existe un profesor con el numero de ID ingresado")
             input("Presione <Enter> para continuar")
             return
         else:
             ProfesorController.deleteProfesor(id)
+            print("!Registro de Profesor eliminado exitosamente!")
+            input("Presione <Enter> para continuar")

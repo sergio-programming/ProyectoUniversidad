@@ -3,7 +3,7 @@ from model.profesor import Profesor, ProfesorDao
 class ProfesorController:
     
     def registerProfesor(nombre, apellido, fecha_nacimiento, genero, email, telefono, facultad_id):
-        profesor = Profesor(nombre, apellido, fecha_nacimiento, genero, email, telefono, facultad_id)
+        profesor = Profesor(id, nombre, apellido, fecha_nacimiento, genero, email, telefono, facultad_id)
         ProfesorDao.create(profesor)
         
     
