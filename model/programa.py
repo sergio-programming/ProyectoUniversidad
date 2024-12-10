@@ -27,8 +27,7 @@ class ProgramaDao:
         conexion.close()
         if result is None:
             return None
-        else:
-            return Programa(result[0], result[1], result[2])
+        return Programa(result[0], result[1], result[2])
         
     @staticmethod
     def readAll():

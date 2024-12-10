@@ -1,9 +1,9 @@
-from view.facultad import Facultad, FacultadDao
+from model.facultad import Facultad, FacultadDao
 
 class FacultadController:
     
     def registerFacultad(nombre):
-        facultad = Facultad(nombre)
+        facultad = Facultad(id, nombre)
         FacultadDao.create(facultad)
         
     def getAllFacultades():

@@ -23,19 +23,19 @@ def menuProgramas():
             return
         else:
             if opcion == 1:
-                pass
+                registrarPrograma()
         
             elif opcion == 2:
-                pass
+                consultarPrograma()
         
             elif opcion == 3:
-                pass
+                visualizarProgramas()
         
             elif opcion == 4:
-                pass
+                actualizarPrograma()
         
             elif opcion == 5:
-                pass
+                eliminarPrograma()
         
             elif opcion == 6:
                 break
@@ -64,7 +64,6 @@ def registrarPrograma():
         except Exception as e:
             print(f"\n{e}")
             input("Presione <Enter> para continuar")
-            pass
     ProgramaController.registerPrograma(nombre)
     
 def visualizarProgramas():
@@ -119,7 +118,7 @@ def actualizarPrograma():
     programa = ProgramaController.getProgramaById(id)
     
     if programa == None:
-        print("\nNo existe un estudiante con el numero de ID ingresado")
+        print("\nNo existe un programa con el numero de ID ingresado")
         input("Presione <Enter> para continuar")
         return
     else:

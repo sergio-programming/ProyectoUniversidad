@@ -3,7 +3,7 @@ from model.programa import Programa, ProgramaDao
 class ProgramaController:
     
     def registerPrograma(nombre, facultad_id):
-        programa = Programa(nombre, facultad_id)
+        programa = Programa(id, nombre, facultad_id)
         ProgramaDao.create(programa)
         
     def getAllProgramas():
