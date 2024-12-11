@@ -76,7 +76,7 @@ def consultarFacultad():
         input("Presione <Enter> para continuar")
     else:
         facultad = FacultadController.getFacultadById(id)
-        if facultad == None:
+        if facultad is None:
             print("\nNo existe una facultad con el numero de ID ingresado")
             input("Presione <Enter> para continuar")
             return
@@ -101,8 +101,8 @@ def actualizarFacultad():
         
     facultad = FacultadController.getFacultadById(id)
     
-    if facultad == None:
-        print("\nNo existe un estudiante con el numero de ID ingresado")
+    if facultad is None:
+        print("\nNo existe una facultad con el numero de ID ingresado")
         input("Presione <Enter> para continuar")
         return
     else:

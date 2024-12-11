@@ -48,7 +48,7 @@ class ProgramaDao:
         conexion = getDatabaseConnection()
         cursor = conexion.cursor()
         cursor.execute(f"""
-                       UPDATE facultades
+                       UPDATE programas
                         SET nombre = {programa.nombre},
                         SET facultad_id = {programa.facultad_id}
                         WHERE id = {programa.id}

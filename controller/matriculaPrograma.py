@@ -1,6 +1,6 @@
 from model.matriculaPrograma import MatriculaPrograma, MatriculaProgramaDao
 
-class MatriculaCursoController:
+class MatriculaProgramaController:
     
     def registerMatriculaPrograma(estudiante_id, programa_id, fecha_matricula):
         matriculaPrograma = MatriculaPrograma(id, estudiante_id, programa_id, fecha_matricula)

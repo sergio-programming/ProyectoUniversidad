@@ -50,8 +50,8 @@ def registrarEstudiante():
     print("#"*30)
     nombre = input("\nIngrese el nombre del estudiante: ")
     apellido = input("Ingrese el apellido del estudiante: ")
-    fecha_nacimiento = input("Ingrese la fecha de nacimiento del estudiante (AAAA/MM/DD): ")
-    genero = input("Ingrese el genero del estudiante: ")
+    fecha_nacimiento = input("Ingrese la fecha de nacimiento del estudiante (AAAA-MM-DD): ")
+    genero = input("Ingrese el genero del estudiante (F/M): ")
     email = input("Ingrese el email del estudiante: ")
     telefono = input("Ingrese el número telefonico del estudiante: ")
     direccion = input("Ingrese la dirección del estudiante: ")
@@ -128,11 +128,11 @@ def actualizarEstudiante():
             if apellido == '':
                 apellido= estudiante.apellido
                 
-            fecha_nacimiento = input("Ingrese la fecha de nacimiento del estudiante (DD/MM/AAAA): ")
+            fecha_nacimiento = input("Ingrese la fecha de nacimiento del estudiante (AAAA-MM-DD): ")
             if fecha_nacimiento == '':
                 fecha_nacimiento = estudiante.nombrefecha_nacimiento
                 
-            genero = input("Ingrese el genero del estudiante: ")
+            genero = input("Ingrese el genero del estudiante (F/M): ")
             if genero == '':
                 genero = estudiante.genero
                 

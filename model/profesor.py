@@ -30,7 +30,7 @@ class ProfesorDao:
         result = cursor.fetchone()
         cursor.close()
         conexion.close()
-        if result == None:
+        if result is None:
             return None
         else:
             return Profesor(result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7])
