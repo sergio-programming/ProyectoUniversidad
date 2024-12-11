@@ -1,14 +1,14 @@
-from controller.matriculaCurso import MatriculaCursoController
+from controller.matriculaPrograma import MatriculaProgramaController
 from controller.estudiante import EstudianteController
-from controller.curso import CursoController
+from controller.programa import ProgramaController
 
-def menuMatriculasCursos():
+def menuMatriculasProgramas():
     while True:
         print()
         print("#"*30)
-        print("MENÚ GESTION DE MATRICULAS DE CURSOS")
+        print("MENÚ GESTION DE MATRICULAS DE PROGRAMAS")
         print("#"*30)
-        print("""1. Registro de matriculas de cursos.
+        print("""1. Registro de matriculas de programas.
 2. Consultar datos de una matricula.
 3. Visualizar matriculas registradas.
 4. Actualizar datos de matriculas registradas.
@@ -24,19 +24,19 @@ def menuMatriculasCursos():
             return
         else:
             if opcion == 1:
-                registrarMatriculaCurso()
+                registrarMatriculaPrograma()
         
             elif opcion == 2:
-                consultarMatriculaCurso()
+                consultarMatriculaPrograma()
         
             elif opcion == 3:
-                visualizarMatriculasCursos()
+                visualizarMatriculasProgramas()
         
             elif opcion == 4:
-                actualizarMatriculaCurso()
+                actualizarMatriculaPrograma()
         
             elif opcion == 5:
-                eliminarMatriculaCurso()
+                eliminarMatriculaPrograma()
         
             elif opcion == 6:
                 break
@@ -46,10 +46,10 @@ def menuMatriculasCursos():
                 input("Presione <Enter> para continuar")    
     
     
-def registrarMatriculaCurso():
+def registrarMatriculaPrograma():
     print()
     print("#"*30)
-    print("\nMODULO DE REGISTRO DE MATRICULAS DE CURSOS")
+    print("\nMODULO DE REGISTRO DE MATRICULAS DE PROGRAMAS")
     print("#"*30)
     while True:
         try:
@@ -67,10 +67,10 @@ def registrarMatriculaCurso():
     
     while True:
         try:
-            curso_id = int(input("Ingrese el id del curso al cual se va a matricular: "))
-            curso = CursoController.getCursoById(curso_id)
-            if curso is None:
-                raise Exception("No existe un curso con el numero de id ingresado. Por favor intente de nuevo.")
+            programa_id = int(input("Ingrese el id del programa al cual se va a matricular: "))
+            programa = ProgramaController.getProgramaById(programa_id)
+            if programa is None:
+                raise Exception("No existe un programa con el numero de id ingresado. Por favor intente de nuevo.")
             break
         except ValueError:
             print("\nEl tipo de dato ingresado no es valido. Por favor ingrese un número.")
@@ -79,27 +79,27 @@ def registrarMatriculaCurso():
             print(f"\n{e}")
             input("Presione <Enter> para continuar")
             
-    fecha_matricula = input("Ingrese la fecha en que se efectuo la matricula (AAAA-MM-DD): ")   
-    MatriculaCursoController.registerMatriculaCurso(estudiante_id, curso_id, fecha_matricula)
+    fecha_matricula = input("Ingrese la fecha en que se efectuo la matricula: ")   
+    MatriculaProgramaController.registerMatriculaPrograma(estudiante_id, programa_id, fecha_matricula)
     
-def visualizarMatriculasCursos():
-    matriculasCursos = []
-    matriculasCursos = MatriculaCursoController.getAllMatriculasCursos()
+def visualizarMatriculasProgramas():
+    matriculasProgramas = []
+    matriculasProgramas = MatriculaProgramaController.getAllMatriculasProgramas()
     print()
     print("#"*30)
-    print("\nMODULO DE VISUALIZACIÓN DE MATRICULAS DE CURSOS")
+    print("\nMODULO DE VISUALIZACIÓN DE MATRICULAS DE PROGRAMAS")
     print("#"*30)
-    for i, matriculaCurso in enumerate(matriculasCursos, start=1):
+    for i, matriculaPrograma in enumerate(matriculasProgramas, start=1):
         print(f"""\nMATRICULA #{i}
-              Id: {matriculaCurso.id}
-              Id del Estudiante: {matriculaCurso.estudiante_id}
-              Id del Curso: {matriculaCurso.curso_id}
-              Fecha de Matricula: {matriculaCurso.fecha_matricula}""")
+              Id: {matriculaPrograma.id}
+              Id del Estudiante: {matriculaPrograma.estudiante_id}
+              Id del Programa: {matriculaPrograma.programa_id}
+              Fecha de Matricula: {matriculaPrograma.fecha_matricula}""")
         
-def consultarMatriculaCurso():
+def consultarMatriculaPrograma():
     print()
     print("#"*30)
-    print("\nMODULO DE CONSULTA DE MATRICULA DE CURSO")
+    print("\nMODULO DE CONSULTA DE MATRICULA DE PROGRAMA")
     print("#"*30)
     try:
         id = int(input("\nIngrese el id de la matricula a consultar: "))
@@ -107,22 +107,22 @@ def consultarMatriculaCurso():
         print("\nEl tipo de dato ingresado no es valido. Por favor ingrese un número.")
         input("Presione <Enter> para continuar")
     else:
-        matriculaCurso = MatriculaCursoController.getMatriculaCursoById(id)
-        if matriculaCurso is None:
+        matriculaPrograma = MatriculaProgramaController.getMatriculaProgramaById(id)
+        if matriculaPrograma is None:
             print("\nNo existe una matricula con el numero de ID ingresado. Por favor intente de nuevo.")
             input("Presione <Enter> para continuar")
             return
         else:
             print(f"""\nEstos son los datos de la matricula:
-                  Id: {matriculaCurso.id}
-                  Id del Estudiante: {matriculaCurso.estudiante_id}
-                  Id del Curso: {matriculaCurso.curso_id}
-                  Fecha de Matricula: {matriculaCurso.fecha_matricula}""")
+                  Id: {matriculaPrograma.id}
+                  Id del Estudiante: {matriculaPrograma.estudiante_id}
+                  Id del Programa: {matriculaPrograma.programa_id}
+                  Fecha de Matricula: {matriculaPrograma.fecha_matricula}""")
             
-def actualizarMatriculaCurso():
+def actualizarMatriculaPrograma():
     print()
     print("#"*30)
-    print("\nMODULO DE ACTUALIZACIÓN DE DATOS DE MATRICULA DE CURSO")
+    print("\nMODULO DE ACTUALIZACIÓN DE DATOS DE MATRICULA DE PROGRAMA")
     print("#"*30)
     while True:
         try:
@@ -133,9 +133,9 @@ def actualizarMatriculaCurso():
         else:
             break
         
-    matriculaCurso = MatriculaCursoController.getMatriculaCursoById(id)
+    matriculaPrograma = MatriculaProgramaController.getMatriculaProgramaById(id)
     
-    if matriculaCurso is None:
+    if matriculaPrograma is None:
         print("\nNo existe una matricula con el numero de ID ingresado. Por favor intente de nuevo.")
         input("Presione <Enter> para continuar")
         return
@@ -156,10 +156,10 @@ def actualizarMatriculaCurso():
     
         while True:
             try:
-                curso_id = int(input("Ingrese el id del curso al cual se va a matricular: "))
-                curso = CursoController.getCursoById(curso_id)
-                if curso is None:
-                    raise Exception("No existe un curso con el numero de id ingresado. Por favor intente de nuevo.")
+                programa_id = int(input("Ingrese el id del programa al cual se va a matricular: "))
+                programa = ProgramaController.getProgramaById(programa_id)
+                if programa is None:
+                    raise Exception("No existe un programa con el numero de id ingresado. Por favor intente de nuevo.")
                 break
             except ValueError:
                 print("\nEl tipo de dato ingresado no es valido. Por favor ingrese un número.")
@@ -169,13 +169,13 @@ def actualizarMatriculaCurso():
                 input("Presione <Enter> para continuar")
             
         fecha_matricula = input("Ingrese la fecha en que se efectuo la matricula: ")
-        MatriculaCursoController.updateMatriculaCurso(id, estudiante_id, curso_id, fecha_matricula)
+        MatriculaProgramaController.updateMatriculaPrograma(id, estudiante_id, programa_id, fecha_matricula)
         
 
-def eliminarMatriculaCurso():
+def eliminarMatriculaPrograma():
     print()
     print("#"*30)
-    print("\nMODULO DE ELIMINACION DE REGISTRO DE MATRICULA DE CURSO")
+    print("\nMODULO DE ELIMINACION DE REGISTRO DE MATRICULA DE PROGRAMA")
     print("#"*30)
     try:
         id = int(input("\nIngrese el id de la matricula a eliminar: "))
@@ -183,10 +183,10 @@ def eliminarMatriculaCurso():
         print("\nEl tipo de dato ingresado no es valido. Por favor ingrese un número.")
         input("Presione <Enter> para continuar")
     else:
-        matriculaCurso = MatriculaCursoController.getMatriculaCursoById(id)
-        if matriculaCurso is None:
+        matriculaPrograma = MatriculaProgramaController.getMatriculaProgramaById(id)
+        if matriculaPrograma is None:
             print("\nNo existe una matricula con el numero de ID ingresado")
             input("Presione <Enter> para continuar")
             return
         else:
-            MatriculaCursoController.deleteMatriculaCurso(id)
+            MatriculaProgramaController.deleteMatriculaPrograma(id)

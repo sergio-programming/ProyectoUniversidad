@@ -16,13 +16,9 @@ class EstudianteDao:
     @staticmethod
     def create(estudiante: Estudiante):
         conexion = getDatabaseConnection()
-        #Creamos un cursor que es un espacio para añadir setencias SQL
         cursor = conexion.cursor()
         cursor.execute(f"INSERT INTO estudiantes (nombre, apellido, fecha_nacimiento, genero, email, telefono, direccion) VALUES ('{estudiante.nombre}', '{estudiante.apellido}', '{estudiante.fecha_nacimiento}', '{estudiante.genero}', '{estudiante.email}', '{estudiante.telefono}', '{estudiante.direccion}')")
-        #Con el .commit comprometemos los cambios que se hicieron en esta conexion.
-        #Con esto los cambios quedan persistentes en la base de datos
         conexion.commit()
-        #Cerramos el cursor y la conexion a la base de datos
         cursor.close()
         conexion.close()
         
@@ -30,14 +26,9 @@ class EstudianteDao:
     @staticmethod    
     def read(id: int):
         conexion = getDatabaseConnection()
-        #Creamos un cursor que es un espacio para añadir setencias SQL
         cursor = conexion.cursor()
         cursor.execute(f"SELECT * FROM estudiantes WHERE id = {id}")
-        #fetchone es un metodo para trabajar con bases de datos
-        #Lo que hace es devolver una fila de una consulta SQL
-        #La variable result alamacena el resultado de la consulta
         result = cursor.fetchone()
-        #Cerramos el cursor y la conexion a la base de datos
         cursor.close()
         conexion.close()
         if result is None:

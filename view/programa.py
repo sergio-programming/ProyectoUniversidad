@@ -50,10 +50,10 @@ def registrarPrograma():
     print("#"*30)
     print("\nMODULO DE REGISTRO DE PROGRAMAS")
     print("#"*30)
-    nombre = input("\nIngrese el nombre de la facultad: ")
+    nombre = input("\nIngrese el nombre del programa: ")
     while True:
         try:
-            facultad_id = int(input("Ingrese el id de la facultad a la que pertenece el profesor: "))
+            facultad_id = int(input("Ingrese el id de la facultad a la que pertenece el programa: "))
             facultad = FacultadController.getFacultadById(facultad_id)
             if facultad is None:
                 raise Exception("No existe una facultad con el numero de id ingresado. Por favor intente de nuevo.")
@@ -64,7 +64,7 @@ def registrarPrograma():
         except Exception as e:
             print(f"\n{e}")
             input("Presione <Enter> para continuar")
-    ProgramaController.registerPrograma(nombre)
+    ProgramaController.registerPrograma(nombre, facultad_id)
     
 def visualizarProgramas():
     programas = []
@@ -91,14 +91,14 @@ def consultarPrograma():
         input("Presione <Enter> para continuar")
     else:
         programa = ProgramaController.getProgramaById(id)
-        if programa == None:
+        if programa is None:
             print("\nNo existe un programa con el numero de ID ingresado")
             input("Presione <Enter> para continuar")
             return
         else:
             print(f"""\nEstos son los datos del programa:
                   Id: {programa.id}
-                  Nombre de Facultad: {programa.nombre}
+                  Nombre del Programa: {programa.nombre}
                   Id de Facultad: {programa.facultad_id}""")
             
 def actualizarPrograma():
@@ -117,7 +117,7 @@ def actualizarPrograma():
         
     programa = ProgramaController.getProgramaById(id)
     
-    if programa == None:
+    if programa is None:
         print("\nNo existe un programa con el numero de ID ingresado")
         input("Presione <Enter> para continuar")
         return
@@ -127,7 +127,7 @@ def actualizarPrograma():
             nombre = programa.nombre   
         while True:
             try:
-                facultad_id = int(input("Ingrese el id de la facultad a la que pertenece el profesor: "))
+                facultad_id = int(input("Ingrese el id de la facultad a la que pertenece el programa: "))
                 facultad = FacultadController.getFacultadById(facultad_id)
                 if facultad is None:
                     raise Exception("\nLa facultad con el numero de id ingresado no existe. Por favor intente de nuevo.")

@@ -130,7 +130,7 @@ def actualizarCurso():
         
     curso = CursoController.getCursoById(id)
     
-    if curso == None:
+    if curso is None:
         print("\nNo existe un curso con el numero de ID ingresado. Por favor intente de nuevo.")
         input("Presione <Enter> para continuar")
         return
