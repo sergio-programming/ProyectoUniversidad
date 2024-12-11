@@ -17,7 +17,7 @@ class ProfesorDao:
     def create(profesor: Profesor):
         conexion = getDatabaseConnection()
         cursor = conexion.cursor()
-        cursor.execute(f"INSERT INTO profesores (nombre, apellido, fecha_nacimiento, genero, email, telefono, departamento_id) VALUES ('{profesor.nombre}', '{profesor.apellido}', '{profesor.fecha_nacimiento}', '{profesor.genero}' '{profesor.email}', '{profesor.telefono}', {profesor.facultad_id})")
+        cursor.execute(f"INSERT INTO profesores (nombre, apellido, fecha_nacimiento, genero, email, telefono, facultad_id) VALUES ('{profesor.nombre}', '{profesor.apellido}', '{profesor.fecha_nacimiento}', '{profesor.genero}' '{profesor.email}', '{profesor.telefono}', {profesor.facultad_id})")
         conexion.commit()
         cursor.close()
         conexion.close()
@@ -61,7 +61,7 @@ class ProfesorDao:
                             genero = '{profesor.genero}',
                             email = '{profesor.email}',
                             telefono = '{profesor.telefono}',
-                            departamento_id = {profesor.facultad_id}
+                            facultad_id = {profesor.facultad_id}
                         WHERE id = {profesor.id}
                        """)
         conexion.commit()
