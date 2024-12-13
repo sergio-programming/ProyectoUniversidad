@@ -47,7 +47,7 @@ def menuFacultades():
 def registrarFacultad():
     print()
     print("#"*30)
-    print("\nMODULO DE REGISTRO DE FACULTADES")
+    print("MODULO DE REGISTRO DE FACULTADES")
     print("#"*30)
     nombre = input("\nIngrese el nombre de la facultad: ")
     FacultadController.registerFacultad(nombre)
@@ -124,7 +124,7 @@ def eliminarFacultad():
         input("Presione <Enter> para continuar")
     else:
         facultad = FacultadController.getFacultadById(id)
-        if facultad == None:
+        if facultad is None:
             print("\nNo existe una facultad con el numero de ID ingresado")
             input("Presione <Enter> para continuar")
             return
