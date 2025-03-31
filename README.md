@@ -5,8 +5,11 @@ I. Introducción.
 Descripción.
 
 Este proyecto consiste en una aplicación de consola desarrollada en el lenguaje de programación Python, conectada a una base de datos MySQL. El programa permite gestionar de manera eficiente las operaciones administrativas y académicas de una universidad, incluyendo el registro de facultades, programas, profesores, estudiantes y cursos, así como las matrículas de los estudiantes en programas y cursos académicos.
+
 Objetivo General.
+
 Desarrollar un sistema de gestión universitaria que facilite las operaciones administrativas y académicas, optimizando los procesos relacionados con facultades, programas, profesores, estudiantes, cursos y matrículas.
+
 Objetivos Específicos.
 - Implementar funcionalidades CRUD para cada entidad del sistema.
 - Establecer una conexión segura y eficiente con la base de datos MySQL.
