@@ -3,7 +3,7 @@ from model.estudiante import Estudiante, EstudianteDao
 class EstudianteController:
     
     def registerEstudiante(nombre, apellido, fecha_nacimiento, genero, email, telefono, direccion):
-        estudiante = Estudiante(id, nombre, apellido, fecha_nacimiento, genero, email, telefono, direccion)
+        estudiante = Estudiante(None, nombre, apellido, fecha_nacimiento, genero, email, telefono, direccion)
         EstudianteDao.create(estudiante)
         
     
